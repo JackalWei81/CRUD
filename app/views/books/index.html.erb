@@ -1,17 +1,31 @@
 <h1>Book list</h1>
-
+<%= link_to 'New Book', new_book_path, :class => "btn btn-primary" %>
 <table class="table">
-  <% @books.each do |b| %>
 
+  <tr>
+    <td>
+      <h3>書名</h3>
+    </td>
+    <td>
+      <h3>顯示</h3>
+    </td>
+    <td>
+      <h3>編輯</h3>
+    </td>
+    <td>
+      <h3>刪除</h3>
+    </td>
+  </tr>
+  <% @books.each do |b| %>
   <tr>
     <td>
       <%= b.name %>
     </td>
     <td>
-      <%= link_to "Show" , book_path(b), :class => "btn btn-primary" %>
+      <%= link_to "Show" , book_path(b), :class => "btn btn-info" %>
     </td>
     <td>
-      <%= link_to "Edit" , edit_book_path(b), :class => "btn btn-default" %>
+      <%= link_to "Edit" , edit_book_path(b), :class => "btn btn-warning" %>
     </td>
     <td>
       <%= link_to "Delete" , book_path(b) , :method => :delete, :class => "btn btn-danger" , :data => { :confirm => "Are you sure?"} %>
@@ -20,6 +34,6 @@
   <% end %>
 </table>
 
-<%= link_to 'New Book', new_book_path %>
+
 
 <%= paginate @books %>

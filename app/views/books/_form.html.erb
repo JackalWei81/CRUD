@@ -26,4 +26,16 @@
     <%= f.label :date_public, "出版時間" %>
     <%= f.datetime_select :date_public, :class => "form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :email, "出版商email" %>
+    <%= f.email_field :email, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone, "出版商電話" %>
+    <%= f.telephone_field :phone, :class => "form-control" %>
+  </div>
+
+
 </div>

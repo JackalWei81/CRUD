@@ -1,3 +1,17 @@
 <h2><%= @book.name %></h2>
-<%= simple_format @book.description %>
+<tr>
+  <td>
+    <h3>描述:</h3>
+    <%= simple_format @book.description %>
+  </td>
+  <td>
+    <h3>購買日期</h3>
+    <%=@book.date_acq %>
+  </td>
+  <td>
+    <h3>出版商email</h3>
+    <%= simple_format @book.email %>
+  </td>
+</tr>
+
 <p><%= link_to 'Back to index', books_path  %></p>
