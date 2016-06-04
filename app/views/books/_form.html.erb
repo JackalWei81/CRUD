@@ -6,12 +6,24 @@
   </ul>
 <% end %>
 
+<div class="container">
   <div class="form-group">
-    <%= f.label :name, "Name" %>
+    <%= f.label :name, "書名" %>
     <%= f.text_field :name, :class => "form-control"  %>
   </div>
 
   <div class="form-group">
-    <%= f.label :description, "Description" %>
+    <%= f.label :description, "描述" %>
     <%= f.text_area :description, :class => "form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :date_acq, "購入時間" %>
+    <%= f.date_select :date_acq, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :date_public, "出版時間" %>
+    <%= f.datetime_select :date_public, :class => "form-control" %>
+  </div>
+</div>
