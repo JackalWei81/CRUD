@@ -30,9 +30,7 @@ class BooksController < ApplicationController
 
   #Patch book_path(:id)
   def update
-    (byebug)
     if @book.update(book_params)
-
       flash[:notice] = "編輯成功"
       redirect_to books_path
     else
