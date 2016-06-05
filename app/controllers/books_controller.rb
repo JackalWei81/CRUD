@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to books_path
     else
-      render :action => :new
+      render :action => :index
     end
   end
 
@@ -30,12 +30,13 @@ class BooksController < ApplicationController
 
   #Patch book_path(:id)
   def update
-
+    (byebug)
     if @book.update(book_params)
+
       flash[:notice] = "編輯成功"
-      redirect_to book_path(@book)
+      redirect_to books_path
     else
-      render :action => :edit
+      render :action => :index
     end
   end
 
@@ -43,25 +44,32 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     flash[:alert] = "刪除成功"
-    redirect_to books_path
+    redirect_to books_path(:page => params[:page])
   end
-
   #new_book_path
   def new
     @book = Book.new
-    if @book.changed?
-      flash[:notice] = "新增成功"
-    end
+#    @books = Book.page(params[:page]).per(8)
+#    if @book.changed?
+#      flash[:notice] = "新增成功"
+#    end
+#    render :action => :index
   end
 
   #edit_book_path
   def edit
+#    @books = Book.page(params[:page]).per(8)
+#    redirect_to :action => :index
   end
 
   private
 
   def find_book
-    @book = Book.find(params[:id])
+    if params[:id]
+      @book = Book.find(params[:id])
+    else
+      @book=Book.new
+    end
   end
 
   def book_params
