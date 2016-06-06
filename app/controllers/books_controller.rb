@@ -2,7 +2,7 @@ class BooksController < ApplicationController
 
   include ActiveModel::Dirty
 
-  before_action :find_book, :only => [:show, :edit, :update ,:destroy]
+  before_action :find_book, :only => [:index, :show, :edit, :update ,:destroy]
 
   #首頁
   #Get books_path
@@ -47,17 +47,17 @@ class BooksController < ApplicationController
   #new_book_path
   def new
     @book = Book.new
-#    @books = Book.page(params[:page]).per(8)
-#    if @book.changed?
-#      flash[:notice] = "新增成功"
-#    end
-#    render :action => :index
+    @books = Book.page(params[:page]).per(8)
+    if @book.changed?
+      flash[:notice] = "新增成功"
+    end
+    render :action => :index
   end
 
   #edit_book_path
   def edit
-#    @books = Book.page(params[:page]).per(8)
-#    redirect_to :action => :index
+    @books = Book.page(params[:page]).per(8)
+    render :action => :index
   end
 
   private

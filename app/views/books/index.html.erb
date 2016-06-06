@@ -1,5 +1,14 @@
 <h1>Book list</h1>
-<%= link_to 'New Book', new_book_path, :class => "btn btn-primary" %>
+<%= link_to 'New Book', books_path, :class => "btn btn-primary" %>
+
+<% if @book != nil %>
+  <%= form_for @book, :class => "form"  do |f| %>
+    <%= render :partial => "form" , :locals => {:f => f} %>
+    <%= f.submit "Save", :class => "btn btn-primary" %>
+    <%= link_to "Cancel", :back, :class=>"btn btn-default" %>
+  <% end %>
+<% end %>
+
 
 <table class="table">
   <tr>
