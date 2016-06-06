@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :books
 
+  root :to => "books#index"
+
   #root還是需要使用Controller#Action方式指定?
 
   # The priority is based upon order of creation: first created -> highest priority.
