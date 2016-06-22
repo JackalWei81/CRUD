@@ -1,5 +1,4 @@
 <h1>Book list</h1>
-<%= link_to 'New Book', books_path, :class => "btn btn-primary" %>
 
 <%= form_for @book, :class => "form"  do |f| %>
   <%= render :partial => "form" , :locals => {:f => f} %>
@@ -31,7 +30,7 @@
       <%= link_to "Show" , book_path(b), :class => "btn btn-info" %>
     </td>
     <td>
-      <%= link_to "Edit" , edit_book_path(b), :class => "btn btn-warning" %>
+      <%= link_to "Edit" , books_path(:edit_id => b), :class => "btn btn-warning" %>
     </td>
     <td>
       <%= link_to "Delete" , book_path(b,:page=>params[:page]) , :method => :delete, :class => "btn btn-danger" , :data => { :confirm => "Are you sure?"} %>

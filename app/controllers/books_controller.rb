@@ -7,6 +7,11 @@ class BooksController < ApplicationController
   #首頁
   #Get books_path
   def index
+    if params[:edit_id]
+      @book = Book.find(params[:edit_id])
+    else
+      @book = Book.new
+    end
     @books = Book.page(params[:page]).per(8)
   end
 
@@ -16,6 +21,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
+      flash[:notice] = "新增成功"
       redirect_to books_path
     else
       render :action => :index
@@ -43,21 +49,6 @@ class BooksController < ApplicationController
     @book.destroy
     flash[:alert] = "刪除成功"
     redirect_to books_path(:page => params[:page])
-  end
-  #new_book_path
-  def new
-    @book = Book.new
-    @books = Book.page(params[:page]).per(8)
-    if @book.changed?
-      flash[:notice] = "新增成功"
-    end
-    render :action => :index
-  end
-
-  #edit_book_path
-  def edit
-    @books = Book.page(params[:page]).per(8)
-    render :action => :index
   end
 
   private
