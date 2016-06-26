@@ -2,16 +2,12 @@ class BooksController < ApplicationController
 
   include ActiveModel::Dirty
 
-  before_action :find_book, :only => [:index, :show, :edit, :update ,:destroy]
+  before_action :find_book, :only => [:show, :update ,:destroy]
 
   #首頁
   #Get books_path
   def index
-    if params[:edit_id]
-      @book = Book.find(params[:edit_id])
-    else
-      @book = Book.new
-    end
+    params[:id] ? @book = Book.find(params[:id]) : @book = Book.new
     @books = Book.page(params[:page]).per(8)
   end
 
@@ -54,11 +50,7 @@ class BooksController < ApplicationController
   private
 
   def find_book
-    if params[:id]
-      @book = Book.find(params[:id])
-    else
-      @book=Book.new
-    end
+    @book = Book.find(params[:id])
   end
 
   def book_params
